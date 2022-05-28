@@ -5,12 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
 public class userDetailsDB extends SQLiteOpenHelper {
 
-    public static final String DBNAME = "Login.db";
+    public static final String DBNAME = "userDetails.db";
 
     public userDetailsDB(Context context) {
         super(context, "userDetails.db", null, 1);
@@ -26,6 +25,7 @@ public class userDetailsDB extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists users");
     }
 
+    //Inserts values into database
     public Boolean insertData(String email, String password, String name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -42,6 +42,7 @@ public class userDetailsDB extends SQLiteOpenHelper {
             return true;
     }
 
+    //Checks if email exists
     public Boolean checkEmail(String email) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where email = ?", new String[] {email});
@@ -51,6 +52,7 @@ public class userDetailsDB extends SQLiteOpenHelper {
             return false;
     }
 
+    //Checks for email and password pairs
     public Boolean checkEmailPassword(String email, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where email = ? and password = ?", new String[] {email, password});

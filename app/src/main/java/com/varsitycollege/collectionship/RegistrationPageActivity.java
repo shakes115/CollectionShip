@@ -35,6 +35,7 @@ public class RegistrationPageActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
                 String userName = name.getText().toString();
 
+                //Checks if user has filled all fields or if user exists
                 if (userEmail.equals("") | pass.equals("") | userName.equals(""))
                     Toast.makeText(RegistrationPageActivity.this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
                 else {
@@ -47,7 +48,7 @@ public class RegistrationPageActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(RegistrationPageActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrationPageActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
                         }
 
                     }
